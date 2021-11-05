@@ -68,6 +68,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^8.13.3",
     "husky": "^7.0.2"
   }
 }

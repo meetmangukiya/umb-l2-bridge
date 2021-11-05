@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant ArbitraryContract
+    participant UMBL2Bridge
+    participant Backend
+    participant UmbrellaAPI
+
+    ArbitraryContract->>UMBL2Bridge: call `requestKeyPair`
+    UMBL2Bridge->>Backend: emits a `DataRequest` event
+    Backend->>UmbrellaAPI: request for l2 key-pair data
+    UmbrellaAPI->>Backend: returns data
+    Backend->>UMBL2Bridge: calls `updateKeyPair` to publish data on-chain
+    UMBL2Bridge->>ArbitraryContract: emits a `DataUpdated` event
+    ArbitraryContract->>UMBL2Bridge: calls `getCurrentValue` function to get the updated data
