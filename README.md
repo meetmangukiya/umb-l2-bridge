@@ -33,6 +33,27 @@ the data is updated that can be watched for to react to the data availability.
 
 ![Flowchart](./packages/react-app/public/flow.mmd.png)
 
+## Retrospective
+
+### Limitations
+
+1. Any smart contract requesting data to be published on chain would have to request,
+   would have to wait for until the data gets published. This means that the smart
+   contract function that required data will have to be retried and executed again
+   after the data is published. But this can be made reactive by listening to
+   `DataUpdated` events and whenever the update event for the key-pair requested fires,
+   one can retrigger the smart contract execution.
+2. Needs off-chain bots / workers / services that can listen to the events and publish
+   data to the bridge. But this is unavoidable, cost of not publishing the data directly
+   on-chain. But the whole concept of L2 data is to have cryptographically verifiable
+   data while reducing gas / fee costs by keeping the data off-chain.
+
+### Advantages
+
+1. Anyone can update the data on bridge. The integrity of the data is still guaranteed
+   by the merkle proofs that are verified against the given `blockId`s using the
+   Umbrella network's `Chain` contract.
+
 ## Dev
 
 ```bash
@@ -43,4 +64,6 @@ yarn chain
 yarn start
 # deploy contracts
 yarn deploy
+# start the worker
+yarn worker
 ```
