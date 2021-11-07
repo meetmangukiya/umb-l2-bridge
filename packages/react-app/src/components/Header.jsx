@@ -5,10 +5,10 @@ import React from "react";
 
 export default function Header() {
   return (
-    <a href="https://github.com/austintgriffith/scaffold-eth" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/meetmangukiya/umb-l2-bridge" target="_blank" rel="noopener noreferrer">
       <PageHeader
-        title="🏗 scaffold-eth"
-        subTitle="forkable Ethereum dev stack focused on fast product iteration"
+        title="🌉 Umbrella L2 Bridge"
+        subTitle="Umbrella L2 Bridge to request for L2 data to be published on-chain."
         style={{ cursor: "pointer" }}
       />
     </a>
