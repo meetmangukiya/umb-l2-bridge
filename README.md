@@ -16,12 +16,18 @@ able to because L2-data is published on-chain.
 
 ## Solution
 
-This project tries to solve this problem by allowing smart contracts
-to request for an L2-pair to be committed on-chain.
+This project solves this problem by creating a service that monitors for
+data requests using the `DataRequest` event emitted by the contract.
+Whenever this event is fired, the worker service gets data from the umbrella
+L2 chain using the umbrella API, and submit the data along with proofs that
+are first validated by the `Chain` contract's `verifyProofForBlock` method.
+If the data is valid, the data is published on-chain within the bridge contract
+that can be queried for. Another event `DataUpdated` event is also emitted everytime
+the data is updated that can be watched for to react to the data availability.
 
-### Flow
+## Flow
 
-![Flowchart](./flow.mmd.png)
+![Flowchart](./packages/react-app/public/flow.mmd.png)
 
 ## Dev
 
