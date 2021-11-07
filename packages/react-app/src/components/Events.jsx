@@ -32,7 +32,7 @@ export default function Events({ contracts, contractName, eventName, localProvid
       <h2>Events:</h2>
       <List
         bordered
-        dataSource={[...dataRequestEvents, ...dataUpdatedEvents].sort(x => x.blockNumber)}
+        dataSource={[...dataRequestEvents, ...dataUpdatedEvents].sort((a, b) => b.blockNumber - a.blockNumber)}
         renderItem={item => {
           if (item.event === "DataRequest")
             return (

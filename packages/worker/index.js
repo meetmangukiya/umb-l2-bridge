@@ -17,6 +17,7 @@ const processDataRequest = async ({
 }) => {
   const decodedKey = LeafKeyCoder.decode(requestedKey);
   console.log(
+    new Date(),
     `processing data request for "${decodedKey}" from ${requesterAddress}`
   );
   const proofs = await apiClient.getProofs([decodedKey]);
@@ -28,7 +29,7 @@ const processDataRequest = async ({
     leaves.value,
     Math.ceil(proofs.block.dataTimestamp.getTime() / 1000)
   );
-  console.log(`l2 data of key "${decodedKey}" published on-chain`);
+  console.log(new Date(), `l2 data of key "${decodedKey}" published on-chain`);
 };
 
 const startProcessingDataRequests = async (
@@ -48,7 +49,7 @@ const startProcessingDataRequests = async (
       requestedKey,
       apiClient,
       umbl2bridgeContract,
-    }).catch(console.log);
+    }).catch((err) => console.log(new Date(), err));
   });
 };
 
@@ -58,6 +59,7 @@ const main = async () => {
     "561759344452879a29971b08f887fdae4be577e7a58580c43c1f39bc395e12af",
     provider
   );
+  console.log(new Date(), "signer address:", signer.address);
 
   const chainContractAddress = await new ContractRegistry(
     provider,
