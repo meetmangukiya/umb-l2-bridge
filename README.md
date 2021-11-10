@@ -67,3 +67,8 @@ yarn deploy
 # start the worker
 yarn worker
 ```
+
+## Code / Files of interest
+
+1. [`worker`](/packages/worker/index.js) - the backend service / worker that will monitor for data requests and post data on-chain after getting the same from UMB API.
+2. [`UMBL2Bridge`](/packages/hardhat/contracts/UMBL2Bridge.sol) - the bridge smart contract which can take data requests, and update data(reported by the worker) after verifying the integrity of the same by the `Chain` contract.
